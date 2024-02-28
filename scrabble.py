@@ -7,4 +7,22 @@ letters_to_points = {k: v for k, v in zip(letters, points)}
 
 #Adding blank tile
 letters_to_points[" "] = 0
-print(letters_to_points)
+
+#Test of dictionary
+##print(letters_to_points)
+
+#Function to calculate the score of a word in scrabble
+def score_word(word):
+    word_upper = word.upper()  #All uppercase to match dictionary
+    point_total = 0
+
+    for i in range(len(word_upper)):
+        if word_upper[i] in letters_to_points:
+            point_total += letters_to_points[word_upper[i]]
+
+    return point_total
+
+#test to check scores
+##print(score_word("brownie")) ## 15
+##print(score_word("zoo")) #12
+##print(score_word("scrabble")) #14
