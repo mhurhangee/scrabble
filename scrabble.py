@@ -9,7 +9,7 @@ letters_to_points = {k: v for k, v in zip(letters, points)}
 letters_to_points[" "] = 0
 
 #Test of dictionary
-print(letters_to_points)
+##print(letters_to_points)
 
 #Function to calculate the score of a word in scrabble
 def score_word(word):
@@ -22,6 +22,7 @@ def score_word(word):
 
     return point_total
 
+
 #test to check scores
 ##print(score_word("brownie")) ## 15
 ##print(score_word("zoo")) #12
@@ -33,16 +34,29 @@ player_to_words = {'player1': ['blue', 'tennis', 'exit'] , 'wordNerd': ['earth',
 #Dictionary to score players point
 player_to_points = {}
 
+#Calculate current score from this position
 for players in player_to_words:
     player_points = 0
     for word in player_to_words[players]:
         player_points += score_word(word)
     player_to_points[players] = player_points
 
-print(player_to_points)
-print(score_word("blue"))
-print(score_word("tennis"))
-print(score_word("exit"))
+#Function for adding word to those played
+def play_word(player, word):
+    player_to_words[player].append(word)
+    points1 = score_word(word)
+    player_to_points[player] += points1
+    print("{player} played the word {word} for {points1}.".format(player=player, word=word, points1=points1))
+    print("Updated score:")
+    print(player_to_points)
+    return
 
+#Simulating an extra round
+play_word("player1", "scrabble")
+play_word("wordNerd", "bilbo")
+play_word("Lexi Con", "baggins")
+play_word("Prof Reader", "toast")
+
+#print(player_to_points)
 
 #print(player_to_words)
